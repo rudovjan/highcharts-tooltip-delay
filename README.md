@@ -8,4 +8,4 @@ You can parametrize duration (default value is 1000)
 `var chartOptions = {tooltip: { delayForDisplay: 2000 }}`
 
 Demo is here:
-http://jsfiddle.net/rudovsky/pu3x5/
+http://jsfiddle.net/rudovsky/pu3x5/1/
