@@ -37,7 +37,7 @@ $(function () {
         tooltip: {
             enabled: true,
             useHTML: true,
-            delayForDisplay: 10500,
+            delayForDisplay: 1000,
             hideDelay: 1,
             borderWidth: 0
         },
