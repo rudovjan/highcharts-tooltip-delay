@@ -19,11 +19,15 @@
         var tooltip = this;
         var refreshArguments = arguments;
 
-        window.setTimeout(function () {
-            if (point === chart.hoverPoint) {
-                proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
-            }
-        }, chart.options.tooltip.delayForDisplay || 1000);
+        if(point.delayForDisplay){
+            window.setTimeout(function () {
+                if (point === chart.hoverPoint) {
+                    proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
+                }
+            }, point.delayForDisplay || 1000);
+        } else {
+            proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
+        }
 
     });
 
