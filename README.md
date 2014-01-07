@@ -3,9 +3,7 @@ Highcharts tooltip delay
 
 Add delay before displaying Highcharts Tooltip
 
-You can parametrize duration (default value is 1000)
+Home page with examples 
+http://rudovjan.github.io/highcharts-tooltip-delay/
 
-`var chartOptions = {tooltip: { delayForDisplay: 2000 }}`
-
-Demo is here:
-http://jsfiddle.net/rudovsky/pu3x5/1/
+Quick demo - http://jsfiddle.net/rudovsky/pu3x5/
