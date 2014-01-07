@@ -1,0 +1,38 @@
+{
+    "name": "Tooltip delay before display",
+    "version": "1.0",
+    "title": "Tooltip delay before display",
+    "author": {
+        "name": "Jan Rudovsky",
+        "url": "http://rudovsky.blogspot.cz/"
+    },
+    "licenses": [
+        {
+            "type": "GPL v2",
+            "url": "https://github.com/rudovjan/highcharts-tooltip-delay/blob/master/LICENSE"
+        }
+    ],
+    "dependencies": {
+        "highcharts": "3.0.0"
+    },
+    "description": "Put defined delay before showing tooltip of point",
+    "keywords": [
+        "tooltip",
+        "delay"
+    ],
+    "homepage": "https://github.com/rudovjan/highcharts-tooltip-delay",
+    "docs": "https://github.com/rudovjan/highcharts-tooltip-delay",
+    "bugs": "",
+    "download": "https://github.com/rudovjan/highcharts-tooltip-delay",
+    "demo": [
+        "",
+        ""
+    ],
+    "maintainers": [
+        {
+            "name": "Jan Rudovsky",
+            "email": "rudovsky@gmail.com",
+            "url": ""
+        }
+    ]
+}
