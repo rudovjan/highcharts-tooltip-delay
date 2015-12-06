@@ -9,7 +9,7 @@
         var chart = this.chart;
         var tooltip = this;
         var refreshArguments = arguments;
-        var delayForDisplay = chart.options.tooltip.delayForDisplay : chart.options.tooltip.delayForDisplay ? 1000;
+        var delayForDisplay = chart.options.tooltip.delayForDisplay ? chart.options.tooltip.delayForDisplay : 1000;
 
         if (timerId) {
             clearTimeout(timerId);
