@@ -4,7 +4,13 @@
 
   H.wrap(H.Tooltip.prototype, 'refresh', function(proceed) {
 
-    var seriesName = arguments[ 1 ].series.name;
+    var seriesName;
+    if (Array.isArray(arguments[ 1 ])) {
+      // Can be array in case that, it's shared tooltip
+      seriesName = "not_have_now_clear_id";
+    } else {
+      seriesName = arguments[ 1 ].series.name;
+    }
 
     var delayForDisplay = this.chart.options.tooltip.delayForDisplay ? this.chart.options.tooltip.delayForDisplay : 1000;
 
