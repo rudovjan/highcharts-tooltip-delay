@@ -1,26 +1,30 @@
 (function (H) {
 
+    var timerId = {};
+
     H.wrap(H.Tooltip.prototype, 'refresh', function (proceed) {
 
+        var seriesName = arguments[1].series.name;
 
-        var point = arguments[1];
-        var chart = this.chart;
-        var tooltip = this;
-        var refreshArguments = arguments;
-        var delayForDisplay = chart.options.tooltip.delayForDisplay;
+        var delayForDisplay = this.chart.options.tooltip.delayForDisplay ? this.chart.options.tooltip.delayForDisplay : 1000;
 
-
-        if (delayForDisplay) {
-            window.setTimeout(function () {
-
-                if (point === chart.hoverPoint || $.inArray(chart.hoverPoint, point)) {
-                    proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
-                }
-
-            }, delayForDisplay || 1000);
-        } else {
-            proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
+        if (timerId[seriesName]) {
+            clearTimeout(timerId[seriesName]);
+            delete timerId[seriesName];
         }
+
+        timerId[seriesName] = window.setTimeout(function () {
+            var point = this.refreshArguments[0];
+
+            if (point === this.chart.hoverPoint || $.inArray(this.chart.hoverPoint, point) > -1) {
+                proceed.apply(this.tooltip, this.refreshArguments);
+            }
+
+        }.bind({
+            refreshArguments: Array.prototype.slice.call(arguments, 1),
+            chart: this.chart,
+            tooltip: this
+        }), delayForDisplay);
 
     });
 
