@@ -1,28 +1,31 @@
-(function (H) {
+(function(H) {
 
-    var timerId;
+  var timerId = {};
 
-    H.wrap(H.Tooltip.prototype, 'refresh', function (proceed) {
+  H.wrap(H.Tooltip.prototype, 'refresh', function(proceed) {
 
+    var seriesName = arguments[ 1 ].series.name;
 
-        var point = arguments[1];
-        var chart = this.chart;
-        var tooltip = this;
-        var refreshArguments = arguments;
-        var delayForDisplay = chart.options.tooltip.delayForDisplay ? chart.options.tooltip.delayForDisplay : 1000;
+    var delayForDisplay = this.chart.options.tooltip.delayForDisplay ? this.chart.options.tooltip.delayForDisplay : 1000;
 
-        if (timerId) {
-            clearTimeout(timerId);
-        }
+    if (timerId[ seriesName ]) {
+      clearTimeout(timerId[ seriesName ]);
+      delete timerId[ seriesName ];
+    }
 
-        timerId = window.setTimeout(function () {
+    timerId[ seriesName ] = window.setTimeout(function() {
+      var point = this.refreshArguments[ 0 ];
 
-            if (point === chart.hoverPoint || $.inArray(chart.hoverPoint, point) > -1) {
-                proceed.apply(tooltip, Array.prototype.slice.call(refreshArguments, 1));
-            }
+      if (point === this.chart.hoverPoint || $.inArray(this.chart.hoverPoint, point) > -1) {
+        proceed.apply(this.tooltip, this.refreshArguments);
+      }
 
-        }, delayForDisplay);
- 
-    });
+    }.bind({
+      refreshArguments: Array.prototype.slice.call(arguments, 1),
+      chart: this.chart,
+      tooltip: this
+    }), delayForDisplay);
+
+  });
 
 }(Highcharts));
