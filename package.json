@@ -1,0 +1,19 @@
+{
+  "name": "highcharts-tooltip-delay",
+  "version": "1.0.0",
+  "description": "Delay for highcharts tooltips",
+  "main": "tooltip-delay.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudovjan/highcharts-tooltip-delay.git"
+  },
+  "author": "Jan Rudovsky",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudovjan/highcharts-tooltip-delay/issues"
+  },
+  "homepage": "https://github.com/rudovjan/highcharts-tooltip-delay#readme"
+}
