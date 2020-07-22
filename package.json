@@ -4,8 +4,6 @@
   "description": "Delay for highcharts tooltips",
   "main": "tooltip-delay.dist.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "babel tooltip-delay.js -o tooltip-delay.dist.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +16,5 @@
   },
   "homepage": "https://github.com/rudovjan/highcharts-tooltip-delay#readme",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.24.1",
-    "babel-preset-latest": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1"
   }
 }
