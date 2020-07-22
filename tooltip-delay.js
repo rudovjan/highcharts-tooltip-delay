@@ -1,4 +1,12 @@
-(function(H) {
+(function (factory) {
+  "use strict";
+
+  if (typeof module === "object" && module.exports) {
+    module.exports = factory;
+  } else {
+    factory(Highcharts);
+  }
+}(function (H) {
 
   let timerId = {};
 
@@ -13,36 +21,40 @@
     return result;
   }
 
-  H.wrap(H.Tooltip.prototype, 'refresh', function(proceed) {
-      let seriesName;
+  function inArray(elem, arr, i) {
+    return arr == null ? -1 : indexOf.call(arr, elem, i);
+  }
 
-      if (Array.isArray(arguments[ 1 ])) {
-        // Can be array in case that, it's shared tooltip
-        seriesName = generatePointsUniqueKey(arguments[ 1 ]);
-      } else {
-        seriesName = arguments[ 1 ].series.name;
+  H.wrap(H.Tooltip.prototype, 'refresh', function (proceed) {
+    let seriesName;
+
+    if (Array.isArray(arguments[1])) {
+      // Can be array in case that, it's shared tooltip
+      seriesName = generatePointsUniqueKey(arguments[1]);
+    } else {
+      seriesName = arguments[1].series.name;
+    }
+
+    const delayForDisplay = this.chart.options.tooltip.delayForDisplay ? this.chart.options.tooltip.delayForDisplay : 1000;
+
+    if (timerId[seriesName]) {
+      clearTimeout(timerId[seriesName]);
+      delete timerId[seriesName];
+    }
+
+    timerId[seriesName] = window.setTimeout(function () {
+      let pointOrPoints = this.refreshArguments[0];
+
+      if (pointOrPoints === this.chart.hoverPoint || inArray(this.chart.hoverPoint, pointOrPoints) > -1) {
+        proceed.apply(this.tooltip, this.refreshArguments);
       }
 
-      const delayForDisplay = this.chart.options.tooltip.delayForDisplay ? this.chart.options.tooltip.delayForDisplay : 1000;
+    }.bind({
+      refreshArguments: Array.prototype.slice.call(arguments, 1),
+      chart: this.chart,
+      tooltip: this
+    }), delayForDisplay);
 
-      if (timerId[ seriesName ]) {
-        clearTimeout(timerId[ seriesName ]);
-        delete timerId[ seriesName ];
-      }
-
-      timerId[ seriesName ] = window.setTimeout(function() {
-        let pointOrPoints = this.refreshArguments[ 0 ];
-
-        if (pointOrPoints === this.chart.hoverPoint || $.inArray(this.chart.hoverPoint, pointOrPoints) > -1) {
-          proceed.apply(this.tooltip, this.refreshArguments);
-        }
-
-      }.bind({
-        refreshArguments: Array.prototype.slice.call(arguments, 1),
-        chart: this.chart,
-        tooltip: this
-      }), delayForDisplay);
-    
   });
 
-}(Highcharts));
+}));
