@@ -21,8 +21,13 @@
     return result;
   }
 
-  function inArray(elem, arr, i) {
-    return arr == null ? -1 : indexOf.call(arr, elem, i);
+  function inArray(value, arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (this[i] === value) {
+        return true;
+      }
+    }
+    return false;
   }
 
   H.wrap(H.Tooltip.prototype, 'refresh', function (proceed) {
