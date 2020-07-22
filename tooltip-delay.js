@@ -21,7 +21,7 @@
     return result;
   }
 
-  function inArray(arr, value) {
+  function inArray(value, arr) {
     for (let i = 0; i < arr.length; i++) {
       if (this[i] === value) {
         return true;
