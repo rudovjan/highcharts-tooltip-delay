@@ -1,6 +1,6 @@
 {
   "name": "highcharts-tooltip-delay",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Delay for highcharts tooltips",
   "main": "tooltip-delay.dist.js",
   "scripts": {
