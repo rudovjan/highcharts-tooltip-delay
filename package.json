@@ -2,19 +2,26 @@
   "name": "highcharts-tooltip-delay",
   "version": "1.4.0",
   "description": "Delay for highcharts tooltips",
-  "main": "tooltip-delay.dist.js",
+  "main": "dist/tooltip-delay.js",
   "scripts": {
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rudovjan/highcharts-tooltip-delay.git"
   },
   "author": "Jan Rudovsky",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/rudovjan/highcharts-tooltip-delay/issues"
   },
   "homepage": "https://github.com/rudovjan/highcharts-tooltip-delay#readme",
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.1",
+    "highcharts": "^9.0.0",
+    "typescript": "^4.2.3"
+  },
+  "peerDependencies": {
+    "highcharts": "^9.0.0"
   }
 }
