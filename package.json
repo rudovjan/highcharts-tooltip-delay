@@ -19,6 +19,6 @@
   "devDependencies": {
   },
   "peerDependencies": {
-    "highcharts": "x.x"
+    "highcharts": "*"
   }
 }
